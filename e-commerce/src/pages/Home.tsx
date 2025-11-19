@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from '../components/NavBar';
 import type { Product } from '../types/types';
 //import '../index.css'
 
@@ -17,17 +19,22 @@ import type { Product } from '../types/types';
         }
         fetchProducts()
     },[])
-  return (
-     <div className="d-flex flex-wrap justify-content-center">
-          {products.map((product:Product)=>(
-           <ProductCard product={product}/>
-            
-          ))}
-          
-     </div>
-    
-  )
-};
+            return (
+              <>
+              <NavBar/>
+              <div className="d-flex flex-wrap justify-content-center">
+                  
+                    {products.map((product:Product)=>(
+                    <ProductCard product={product}/>
+                      
+                    ))}
+                    
+              </div>
+              </>
+              
+              
+            )
+          };
 export default Home;
 
 
