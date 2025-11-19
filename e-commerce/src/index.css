@@ -1,0 +1,28 @@
+/* Container styles */
+.mt-5 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px; /* <-- space between cards */
+}
+
+/* Card styling */
+.product-card {
+  width: 250px;
+  text-align: center;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+/* Product image */
+.product-card img {
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .product-card {
+    width: 90%;
+  }
+}
