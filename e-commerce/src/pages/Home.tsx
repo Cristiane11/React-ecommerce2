@@ -1,10 +1,10 @@
 
 import { useState, useEffect } from 'react';
-import { Container, Card,Button } from 'react-bootstrap';
+import ProductCard from '../components/ProductCard';
 import type { Product } from '../types/types';
-import '../index.css'
+//import '../index.css'
 
- const Home = () => {
+ const Home:React.FC = () => {
 
    
     const [products, setProducts]  = useState<Product[]>([]);
@@ -18,23 +18,13 @@ import '../index.css'
         fetchProducts()
     },[])
   return (
-     <Container className="mt-5">
+     <div className="d-flex flex-wrap justify-content-center">
           {products.map((product:Product)=>(
-            <Card>
-              <Card.Img src={product.image} />
-              <Card.Body>
-                <Card.Title>{product.title}</Card.Title>
-                <Card.Text> {product.description}</Card.Text>
-                <Card.Title>{product.price} </Card.Title>
-                <Button variant="primary">Buy Now</Button>
-                
-              </Card.Body>
-                
-            </Card>
+           <ProductCard product={product}/>
             
           ))}
           
-     </Container>
+     </div>
     
   )
 };
