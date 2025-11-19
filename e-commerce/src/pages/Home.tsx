@@ -1,23 +1,12 @@
 
 import { useState, useEffect } from 'react';
-import { Container, Card } from 'react-bootstrap';
+import { Container, Card,Button } from 'react-bootstrap';
+import type { Product } from '../types/types';
 import '../index.css'
 
  const Home = () => {
 
-    
-    interface Product{
-       id: number; 
-       title: string;
-       price: number;
-       description: string;
-       category:string;
-       image:string;
-       rating:{
-         rate:number;
-         count:number;
-       }
-    }
+   
     const [products, setProducts]  = useState<Product[]>([]);
    
     useEffect(()=>{
@@ -35,7 +24,10 @@ import '../index.css'
               <Card.Img src={product.image} />
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
-                <h3>{product.price}</h3>
+                <Card.Text> {product.description}</Card.Text>
+                <Card.Title>{product.price} </Card.Title>
+                <Button variant="primary">Buy Now</Button>
+                
               </Card.Body>
                 
             </Card>
