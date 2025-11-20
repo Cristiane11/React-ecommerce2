@@ -22,10 +22,10 @@ import type { Product } from '../types/types';
             return (
               <>
               <NavBar/>
-              <div className="d-flex flex-wrap justify-content-center">
+              <div className="d-flex flex-wrap justify-content-center ">
                   
                     {products.map((product:Product)=>(
-                    <ProductCard product={product}/>
+                    <ProductCard key= {product.id} product={product}/>
                       
                     ))}
                     
