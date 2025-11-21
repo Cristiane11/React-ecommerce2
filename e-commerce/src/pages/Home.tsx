@@ -5,10 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from '../components/NavBar';
 import type { Product } from '../types/types';
 import  {useProductContext} from '../context/ProductContext';
+import {useNavigate} from 'react-router-dom'
 //import '../index.css'
 
  const Home:React.FC = () => {
 
+  const navigate = useNavigate();
    const {products, dispatch} = useProductContext();
     //const [products, setProducts]  = useState<Product[]>([]);
    
@@ -24,6 +26,7 @@ import  {useProductContext} from '../context/ProductContext';
             return (
               <>
               <NavBar/>
+              <button onClick={() => navigate('/profile')}>Go to Profile Page</button>
               <div className="d-flex flex-wrap justify-content-center ">
                   
                     {products.map((product:Product)=>(
