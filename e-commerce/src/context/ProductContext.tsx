@@ -59,8 +59,16 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
 }) => {
     const[state, dispatch] = useReducer(productReducer, initialState);
     return(
-        <ProdcuctContext.Provider value={{...state, dispatch}}>
+        <ProductContext.Provider value={{...state, dispatch}}>
             {children}
-        </ProdcuctContext.Provider>
-    )
+        </ProductContext.Provider>
+    );
+};
+//Custom Hook for accessing the contex
+export const useProductContext = () : ProductContextType => {
+    const context = useContext(ProductContext);
+    if (! context) {
+        throw new Error('useProductContext must be used within a ProductProvider');
+    }
+    return context;
 }
