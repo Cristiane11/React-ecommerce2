@@ -11,3 +11,5 @@
          count:number;
        }
     }
+
+    export type Category = string;
