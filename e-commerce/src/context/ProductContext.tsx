@@ -53,6 +53,7 @@ const ProductContext = createContext<ProductContextType |undefined>(undefined)
 interface ProductProviderProps{
     children: ReactNode;
 }
+//Wraps the app and provides the context value to all child components
 export const ProductProvider: React.FC<ProductProviderProps> = ({
     children,
 
