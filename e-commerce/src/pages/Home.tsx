@@ -15,7 +15,7 @@ import {fetchProducts, fetchCategories} from '../api/api'
  const Home:React.FC = () => {
 
   const navigate = useNavigate();
-   const {products, dispatch} = useProductContext();
+   const {products,selectedCategory, dispatch} = useProductContext();
     //const [products, setProducts]  = useState<Product[]>([]);
 
     const {data: productsData, isLoading} = useQuery({
@@ -44,12 +44,20 @@ import {fetchProducts, fetchCategories} from '../api/api'
       queryFn: fetchCategories,
       
     })
+    const getFilteredProducts = () => {
+      if (selectedCategory){
+        return products.filter((product:Product) => product.category === selectedCategory
+      );
+      }
+      return products;
+    };
+    const filteredProducts = getFilteredProducts();
 
            return (
               <>
               <NavBar/>
-              <select> 
-                <option> All Categories</option>
+              <select onChange={(e)=> dispatch({type:"SET_SELECTED_CATEGORY", payload:e.target.value})}> 
+                <option value=''> All Categories</option>
               {categories?.data.map((category: Category) =>(
                 <option key={category} value={category}>
                   {category}
@@ -59,8 +67,8 @@ import {fetchProducts, fetchCategories} from '../api/api'
               
               <div className="d-flex flex-wrap justify-content-center ">
                   
-                    {products.map((product:Product)=>(
-                    <ProductCard key= {product.id} product={product}/>
+                    {filteredProducts.map((product:Product)=>(
+                    <ProductCard  product={product} key={product.id} />
                       
                     ))}
                     
