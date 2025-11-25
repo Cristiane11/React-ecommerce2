@@ -56,7 +56,8 @@ import {fetchProducts, fetchCategories} from '../api/api'
            return (
               <>
               <NavBar/>
-              <select onChange={(e)=> dispatch({type:"SET_SELECTED_CATEGORY", payload:e.target.value})}> 
+              <select onChange={(e)=> dispatch({type:"SET_SELECTED_CATEGORY", payload:e.target.value})}
+                value={selectedCategory}> 
                 <option value=''> All Categories</option>
               {categories?.data.map((category: Category) =>(
                 <option key={category} value={category}>
@@ -64,6 +65,7 @@ import {fetchProducts, fetchCategories} from '../api/api'
                 </option>
               ))}
               </select>
+              <button className='btn' onClick={()=>dispatch({type:"SET_SELECTED_CATEGORY", payload: ""})}> Clear Fliter</button>
               
               <div className="d-flex flex-wrap justify-content-center ">
                   
