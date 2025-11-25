@@ -5,7 +5,7 @@ import { createContext, useContext, type ReactNode, useReducer } from 'react';
 
 // Define Action types
 type ProductAction ={
-    type: 'SET_PRODUCT'; payload: Product[]}
+    type: 'SET_PRODUCTS'; payload: Product[]}
     | {type:'SET_SELECTED_CATEGORY'; payload: string};
 
 
@@ -25,7 +25,7 @@ interface ProductState {
     action: ProductAction
  ): ProductState => {
     switch(action.type){
-        case'SET_PRODUCT':
+        case'SET_PRODUCTS':
             return{...state, products: action.payload };
         case 'SET_SELECTED_CATEGORY':
             return{...state, selectedCategory: action.payload};

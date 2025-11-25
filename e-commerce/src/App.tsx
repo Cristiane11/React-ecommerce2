@@ -9,19 +9,21 @@ function App() {
  
 const client = new QueryClient();
   return (
-    <QueryClientProvider client={client}>//Provide the react query client to the app 
-        <ProductProvider>//Provide the context to the component tree 
-            <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<Home/>} />
-                  <Route path="/profile" element={<Profile/>} />
-                </Routes>
-            </BrowserRouter>
+    //Provide the react query client to the app 
+    <QueryClientProvider client={client}> 
+      //Provide the context to the component tree 
+          <ProductProvider>
+              <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<Home/>} />
+                    <Route path="/profile" element={<Profile/>} />
+                  </Routes>
+              </BrowserRouter>
 
-        </ProductProvider>
+          </ProductProvider>
     </QueryClientProvider>
     
-  )
+  );
 }
 
 export default App

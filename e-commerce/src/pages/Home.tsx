@@ -1,13 +1,13 @@
 
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from '../components/NavBar';
-import type { Product } from '../types/types';
+import type { Product, Category } from '../types/types';
 import  {useProductContext} from '../context/ProductContext';
 import {useNavigate} from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query';
-import type {fetchProducts} from '../api/api'
+import {fetchProducts, fetchCategories} from '../api/api'
 
 
 //import '../index.css'
@@ -17,7 +17,8 @@ import type {fetchProducts} from '../api/api'
   const navigate = useNavigate();
    const {products, dispatch} = useProductContext();
     //const [products, setProducts]  = useState<Product[]>([]);
-    const {data: productsData, isLoading, error} = useQuery({
+
+    const {data: productsData, isLoading} = useQuery({
       queryKey: ['products'],
       queryFn: fetchProducts,
       
@@ -37,11 +38,25 @@ import type {fetchProducts} from '../api/api'
       if(productsData)
         dispatch({type:'SET_PRODUCTS', payload: productsData.data});
       },[dispatch, productsData]);
+
+      const {data: categories} = useQuery({
+      queryKey: ['categories'],
+      queryFn: fetchCategories,
+      
+    })
+
            return (
               <>
               <NavBar/>
-              {isLoading && <h1>Loading...</h1>}
-              <button onClick={() => navigate('/profile')}>Go to Profile Page</button>
+              <select> 
+                <option> All Categories</option>
+              {categories?.data.map((category: Category) =>(
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+              </select>
+              
               <div className="d-flex flex-wrap justify-content-center ">
                   
                     {products.map((product:Product)=>(
