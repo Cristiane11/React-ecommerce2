@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from '../components/NavBar';
 import type { Product, Category } from '../types/types';
 import  {useProductContext} from '../context/ProductContext';
-import {useNavigate} from 'react-router-dom'
+
 import { useQuery } from '@tanstack/react-query';
 import {fetchProducts, fetchCategories} from '../api/api'
 
@@ -14,11 +14,11 @@ import {fetchProducts, fetchCategories} from '../api/api'
 
  const Home:React.FC = () => {
 
-  const navigate = useNavigate();
+
    const {products,selectedCategory, dispatch} = useProductContext();
     //const [products, setProducts]  = useState<Product[]>([]);
 
-    const {data: productsData, isLoading} = useQuery({
+    const {data: productsData} = useQuery({
       queryKey: ['products'],
       queryFn: fetchProducts,
       
@@ -50,13 +50,14 @@ import {fetchProducts, fetchCategories} from '../api/api'
       );
       }
       return products;
-    }
-    const filteredProducts = getFilteredProducts
+    };
+    const filteredProducts = getFilteredProducts();
 
            return (
               <>
               <NavBar/>
-              <select onChange={(e)=> dispatch({type:"SET_SELECTED_CATEGORY", payload:e.target.value})}> 
+              <select onChange={(e)=> dispatch({type:"SET_SELECTED_CATEGORY", payload:e.target.value})}
+                value={selectedCategory}> 
                 <option value=''> All Categories</option>
               {categories?.data.map((category: Category) =>(
                 <option key={category} value={category}>
