@@ -2,7 +2,6 @@
 import {  useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from '../components/NavBar';
 import type { Product, Category } from '../types/types';
 import  {useProductContext} from '../context/ProductContext';
 
@@ -55,7 +54,7 @@ import {fetchProducts, fetchCategories} from '../api/api'
 
            return (
               <>
-              <NavBar/>
+              
               <select onChange={(e)=> dispatch({type:"SET_SELECTED_CATEGORY", payload:e.target.value})}
                 value={selectedCategory}> 
                 <option value=''> All Categories</option>

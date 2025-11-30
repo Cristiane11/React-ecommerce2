@@ -8,6 +8,7 @@ import Cart from './pages/Cart';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ProductProvider} from './context/ProductContext'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import NavBar from './components/NavBar';
 
 import { AuthProvider } from './context/AuthContext';
 
@@ -24,6 +25,7 @@ const client = new QueryClient();
           <ProductProvider>
             <AuthProvider>
               <BrowserRouter>
+              <NavBar/>
                   <Routes>
                     <Route path="/" element={<Home/>} />
                     <Route path="/profile" element={<Profile/>} />
