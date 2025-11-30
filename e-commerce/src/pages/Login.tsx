@@ -19,7 +19,7 @@ const Login = () => {
         if (user) {
             navigate("/profile");
         }
-    }, [user]);
+    }, [user, navigate]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -37,7 +37,7 @@ const Login = () => {
         <div style ={styles.form}>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                {error && <p className="error">{error}</p>}
+                {error && <p style={styles.error}>{error}</p>}
                 <fieldset style={styles.fieldset}>
                     <legend style={styles.legend}>Login</legend>
                     <input style={styles.input}
@@ -52,7 +52,7 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button type="submit">Login</button>
+                    <button type="submit" style={styles.button}>Login</button>
                 </fieldset>
             </form>
         </div>
