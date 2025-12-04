@@ -1,14 +1,33 @@
 import React from 'react'
 import { Card,Button,  } from 'react-bootstrap';
 import type { Product } from '../types/types';
-
+import { useAuth } from '../context/AuthContext';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../features/cartSlice';
 
 //import '../index.css'
 
 const ProductCard: React.FC<{product:Product}> = ({product}) => {
-     
+    const { user } = useAuth();
+  const dispatch = useDispatch(); 
    
-   
+  const handleBuyNow =()=> {
+    if(!user){
+      alert("Please log in to purchase items.");
+    }
+    //send product info to Cart
+    dispatch(
+      addToCart({
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        count:1,
+
+      })
+    );
+  
+  };
   return (
      <div className="col-md-4 col-lg-3 p-2 shadow-sm  bg-white">
            <Card className="product-card  d-flex flex-column align-items-center p-2 mb-3" >
@@ -21,7 +40,10 @@ const ProductCard: React.FC<{product:Product}> = ({product}) => {
                     <Card.Title>$ {product.price}</Card.Title>
                      <Card.Text> {product.category.toUpperCase()}</Card.Text>
                      <span>{product.rating.rate}</span>
-                    <Button variant="primary">Buy Now</Button>
+                    <Button id='buyNow'variant="primary"
+                     onClick={handleBuyNow} 
+                     disabled={!user}
+                     title={!user ? "Log in to buy" : "Add to cart"}>Buy Now</Button>
                 </Card.Body>
                 </Card>
           

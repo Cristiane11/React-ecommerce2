@@ -9,13 +9,11 @@ import { useQuery } from '@tanstack/react-query';
 import {fetchProducts, fetchCategories} from '../api/api'
 
 
-//import '../index.css'
-
  const Home:React.FC = () => {
 
 
    const {products,selectedCategory, dispatch} = useProductContext();
-    //const [products, setProducts]  = useState<Product[]>([]);
+   
 
     const {data: productsData} = useQuery({
       queryKey: ['products'],
@@ -23,16 +21,7 @@ import {fetchProducts, fetchCategories} from '../api/api'
       
     })
    
-    // useEffect(()=>{
-    //     const fetchProducts = async () =>{
-    //         const response = await fetch('https://fakestoreapi.com/products');
-    //         const data =  await response.json();
-    //         dispatch({type:'SET_PRODUCT', payload: data});
-    //        // setProducts(data)
-    //     }
-    //     fetchProducts()
-    // },[dispatch])
-
+  
     useEffect(()=> {
       if(productsData)
         dispatch({type:'SET_PRODUCTS', payload: productsData.data});

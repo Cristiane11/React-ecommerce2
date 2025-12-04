@@ -16,12 +16,10 @@ import { AuthProvider } from './context/AuthContext';
 function App() {
  
 const client = new QueryClient();
-
-
   return (
     //Provide the react query client to the app 
     <QueryClientProvider client={client}> 
-      //Provide the context to the component tree 
+    
           <ProductProvider>
             <AuthProvider>
               <BrowserRouter>

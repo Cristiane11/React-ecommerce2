@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth} from '../context/AuthContext';
 import type { User } from 'firebase/auth';
 import { updateProfile, deleteUser } from 'firebase/auth';
+import Cart from './Cart';
 import styles from './auto-styles'
 
 const Profile = () => {
@@ -68,6 +69,11 @@ const Profile = () => {
             Delete Account
           </button>
         </div>
+        <div style={styles.form}>
+          {/* ... profile form ... */}
+            <h2>Your Cart</h2>
+        <Cart />
+  </div>
       </form>
     </div>
   );
