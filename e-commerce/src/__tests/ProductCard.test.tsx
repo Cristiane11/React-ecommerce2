@@ -3,8 +3,17 @@ import { Card, Button } from 'react-bootstrap';
 import type { Product } from '../types/types';
 import { useAuth } from '../context/AuthContext';
 import { useDispatch } from 'react-redux';
+import '@testing-library/jest-dom';
 import { addToCart } from '../features/cartSlice';
+import ProductCard from '../components/ProductCard';
+import type { userInfo } from 'node:os';
 
+vi.mock('../lib/firebase/firebase', () => ({
+    auth: {}
+}));
+vi.mock('firebase/auth', () => ({
+    signInWithEmailAndPassword: vi.fn()
+  }));
 interface ProductCardProps {
   product: Product;
   onAuthRequired?: () => void;
